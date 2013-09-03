@@ -1,11 +1,14 @@
+// Package bale provides wrappers around go logging libraries, allowing users of the
+// library to easily swap between logging implementations without changing client code.
 package bale
 
+// Logger defines the minimum set of methods implemented by all logging implementations.
 type Logger interface {
 	logPrinter
 	logFormatter
 }
 
-// Log functions that handle arguments in the manner of fmt.Print.
+// Log functions that handle arguments like fmt.Print.
 type logPrinter interface {
 	// Info logs to the INFO log.
 	Info(args ...interface{})
@@ -21,7 +24,7 @@ type logPrinter interface {
 	Fatal(args ...interface{})
 }
 
-// Log functions that handle arguments in the manner of fmt.Printf.
+// Log functions that handle arguments like fmt.Printf.
 type logFormatter interface {
 	// Infof logs to the INFO log.
 	Infof(format string, args ...interface{})
@@ -37,7 +40,7 @@ type logFormatter interface {
 	Fatalf(format string, args ...interface{})
 }
 
-// Log functions that handle arguments in the manner of fmt.Println.
+// Log functions that handle arguments like fmt.Println.
 type Logliner interface {
 	// Infoln logs to the INFO log.
 	Infoln(args ...interface{})
